@@ -1,9 +1,0 @@
-
-spring:
-    application:
-        name: facturation-core
-#    profiles:
-#        active: 
-    cloud:
-        config:
-            uri: http://config-server:9090
