@@ -150,5 +150,12 @@ public class DemandeResource {
     demandeService.delete(id);
     return ResponseEntity.ok().build();
   }
+  @GetMapping("/demandes/employe/{idEmploye}")
+  public ResponseEntity<List<DemandeDTO>> findDemandsByEmployeId(@PathVariable Integer idEmploye) {
+    // Use EmployeService to find demands by employee ID
+    List<DemandeDTO> demands = demandeService.findDemandsByEmployeId(idEmploye);
+    return ResponseEntity.ok().body(demands);
+  }
+
 }
 

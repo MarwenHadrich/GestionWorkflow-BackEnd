@@ -1,11 +1,14 @@
 package com.csys.workflow.service;
 
+import com.csys.workflow.domain.Interface;
 import com.csys.workflow.domain.Ticket;
 import com.csys.workflow.dto.TicketDTO;
 import com.csys.workflow.factory.TicketFactory;
+import com.csys.workflow.repository.InterfaceRepository;
 import com.csys.workflow.repository.TicketRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
+import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +24,11 @@ public class TicketService {
   private final Logger log = LoggerFactory.getLogger(TicketService.class);
 
   private final TicketRepository ticketRepository;
+  private final InterfaceRepository interfaceRepository;
 
-  public TicketService(TicketRepository ticketRepository) {
+  public TicketService(TicketRepository ticketRepository, InterfaceRepository interfaceRepository) {
     this.ticketRepository=ticketRepository;
+      this.interfaceRepository = interfaceRepository;
   }
 
   /**
@@ -111,6 +116,24 @@ public class TicketService {
   public void delete(Integer id) {
     log.debug("Request to delete Ticket: {}",id);
     ticketRepository.deleteById(id);
+  }
+  public List<TicketDTO> findTicketsByInterfaceId(Integer idInterface) {
+    // Retrieve the Interface object corresponding to the given ID
+
+    Interface interfaceObject = interfaceRepository.findById(idInterface).orElse(null);
+
+    // If the Interface object is found, use it to find the associated tickets
+    if (interfaceObject != null) {
+      // Retrieve the list of tickets associated with the given interface
+      List<Ticket> tickets = ticketRepository.findByInterface1(interfaceObject);
+
+      // Convert the list of Ticket entities to TicketDTOs
+      return TicketFactory.ticketToTicketDTOs(tickets);
+    } else {
+      // Handle the case where the Interface object with the given ID is not found
+      // For example, you could return an empty list or throw an exception
+      return Collections.emptyList();
+    }
   }
 }
 

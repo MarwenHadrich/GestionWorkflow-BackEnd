@@ -22,6 +22,7 @@ public class TicketDataDTO {
   //private TicketDTO ticket;
   private Integer idDemande;
   private Integer idTicket;
+  private String nomTicket;
 
   public Integer getIdTicketData() {
     return idTicketData;
@@ -53,6 +54,14 @@ public class TicketDataDTO {
 
   public void setIdTicket(Integer idTicket) {
     this.idTicket = idTicket;
+  }
+
+  public String getNomTicket() {
+    return nomTicket;
+  }
+
+  public void setNomTicket(String nomTicket) {
+    this.nomTicket = nomTicket;
   }
 
 //    public DemandeDTO getDemande() {

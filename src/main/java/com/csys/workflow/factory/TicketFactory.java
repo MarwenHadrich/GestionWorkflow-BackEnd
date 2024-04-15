@@ -17,6 +17,7 @@ public class TicketFactory {
     ticketDTO.setMinLength(ticket.getMinLength());
     ticketDTO.setMaxLength(ticket.getMaxLength());
     ticketDTO.setRegleTicket(ticket.getRegleTicket());;
+    ticketDTO.setPlaceholder(ticket.getPlaceholder());
 
       ticketDTO.setIdTypeTicket(TypeTicketFactory.typeticketToTypeTicketDTO(ticket.getTypeTicket()).getIdTypeTicket());
       ticketDTO.setTypeTicket(TypeTicketFactory.typeticketToTypeTicketDTO(ticket.getTypeTicket()).getTypeTicket());
@@ -36,6 +37,7 @@ public class TicketFactory {
     ticket.setMinLength(ticketDTO.getMinLength());
     ticket.setMaxLength(ticketDTO.getMaxLength());
     ticket.setRegleTicket(ticketDTO.getRegleTicket());
+    ticket.setPlaceholder(ticketDTO.getPlaceholder());
 
 
       Interface interf = new Interface();

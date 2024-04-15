@@ -54,7 +54,7 @@ public class RoleEquipeDTO {
         this.equipe = equipe;
     }
 
-    
+
 
     public RoleDTO getRole() {
         return role;

@@ -131,5 +131,12 @@ public class EmployeResource {
     employeService.delete(id);
     return ResponseEntity.ok().build();
   }
+  @GetMapping("/login/{login}")
+  public ResponseEntity<EmployeDTO> getEmployeByLogin(@PathVariable String login) {
+    log.debug("Request to get Employe: {}",login);
+    EmployeDTO dto = employeService.findByLogin(login);
+    RestPreconditions.checkFound(dto, "employe.NotFound");
+    return ResponseEntity.ok().body(dto);
+  }
 }
 

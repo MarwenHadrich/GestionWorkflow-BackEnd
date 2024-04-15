@@ -39,6 +39,9 @@ public class Ticket implements Serializable {
     @Size(max = 255)
     @Column(name = "regle_ticket", length = 255)
     private String regleTicket;
+    @Size(max = 50)
+    @Column(name = "placeholder", length = 50)
+    private String placeholder;
     @OneToMany(mappedBy = "ticket")
     private List<TicketData> ticketDataList;
     @JoinColumn(name = "id_interface", referencedColumnName = "id_interface")
@@ -154,5 +157,13 @@ public class Ticket implements Serializable {
 
     public void setTypeTicket(TypeTicket typeTicket) {
         this.typeTicket = typeTicket;
+    }
+
+    public String getPlaceholder() {
+        return placeholder;
+    }
+
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
     }
 }

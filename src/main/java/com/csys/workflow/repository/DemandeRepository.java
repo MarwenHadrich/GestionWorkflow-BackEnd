@@ -2,6 +2,9 @@ package com.csys.workflow.repository;
 
 import com.csys.workflow.domain.Demande;
 import java.lang.Integer;
+import java.util.List;
+
+import com.csys.workflow.domain.Employe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DemandeRepository extends JpaRepository<Demande, Integer> {
+    List<Demande> findByEmploye(Employe employe);
 }
 

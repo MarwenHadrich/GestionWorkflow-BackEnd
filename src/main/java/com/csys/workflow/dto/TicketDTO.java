@@ -30,6 +30,11 @@ public class TicketDTO {
             max = 255
     )
     private String regleTicket;
+    @Size(
+            min = 0,
+            max = 50
+    )
+    private String placeholder;
 
     //private List<TicketDataDTO> ticketDataList;
 
@@ -117,6 +122,14 @@ private String typeTicket;
 
     public void setTypeTicket(String typeTicket) {
         this.typeTicket = typeTicket;
+    }
+
+    public String getPlaceholder() {
+        return placeholder;
+    }
+
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
     }
 
 //    public List<TicketDataDTO> getTicketDataList() {

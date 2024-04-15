@@ -1,12 +1,17 @@
 package com.csys.workflow.service;
 
+import com.csys.workflow.domain.Demande;
+import com.csys.workflow.domain.Ticket;
 import com.csys.workflow.domain.TicketData;
+import com.csys.workflow.dto.TicketDTO;
 import com.csys.workflow.dto.TicketDataDTO;
 import com.csys.workflow.factory.TicketDataFactory;
+import com.csys.workflow.repository.DemandeRepository;
 import com.csys.workflow.repository.TicketDataRepository;
 import com.csys.workflow.repository.WorkflowRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
+import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +28,11 @@ public class TicketDataService {
     private final Logger log = LoggerFactory.getLogger(TicketDataService.class);
 
     private final TicketDataRepository ticketdataRepository;
+    private final DemandeRepository demandeRepository;
 
-    public TicketDataService(TicketDataRepository ticketdataRepository) {
+    public TicketDataService(TicketDataRepository ticketdataRepository, DemandeRepository demandeRepository) {
         this.ticketdataRepository = ticketdataRepository;
+        this.demandeRepository = demandeRepository;
     }
 
     /**
@@ -114,5 +121,25 @@ public class TicketDataService {
     public void delete(Integer id) {
         log.debug("Request to delete TicketData: {}", id);
         ticketdataRepository.deleteById(id);
+    }
+    @Transactional(
+            readOnly = true
+    )
+    public List<TicketDataDTO> findTicketsDataByDemandId(Integer idDemande) {
+        // Retrieve the Demand object corresponding to the given ID
+        Demande demande = demandeRepository.findById(idDemande).orElse(null);
+
+        // If the Demand object is found, use it to find the associated tickets
+        if (demande != null) {
+            // Retrieve the list of tickets associated with the given demand
+            List<TicketData> ticketsData = ticketdataRepository.findByDemande(demande);
+
+            // Convert the list of Ticket entities to TicketDTOs
+            return TicketDataFactory.ticketdataToTicketDataDTOs(ticketsData);
+        } else {
+            // Handle the case where the Demand object with the given ID is not found
+            // For example, you could return an empty list or throw an exception
+            return Collections.emptyList();
+        }
     }
 }

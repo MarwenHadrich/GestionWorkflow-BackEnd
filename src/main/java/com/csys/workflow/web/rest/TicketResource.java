@@ -139,6 +139,11 @@ public class TicketResource {
     log.debug("Request to get all  Tickets : {}");
     return ticketService.findAll();
   }
+  @GetMapping("/tickets/inter/{id}")
+  public List<TicketDTO> getTicketsByInterface(@PathVariable Integer id) {
+    log.debug("Request to get all  Tickets by interface id : {}",id);
+    return ticketService.findTicketsByInterfaceId(id);
+  }
 
   /**
    * DELETE  /tickets/{id} : delete the "id" ticket.

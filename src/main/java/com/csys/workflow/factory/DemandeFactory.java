@@ -20,6 +20,7 @@ public class DemandeFactory {
         // demandeDTO.setInterface1(InterfaceFactory.interToInterfaceDTO(demande.getInterface1()));
         demandeDTO.setIdEmploye(EmployeFactory.employeToEmployeDTO(demande.getEmploye()).getIdEmploye());
         demandeDTO.setNomEmplye(EmployeFactory.employeToEmployeDTO(demande.getEmploye()).getNomEmploye());
+        demandeDTO.setPrenomEmploye(EmployeFactory.employeToEmployeDTO(demande.getEmploye()).getPrenomEmploye());
         demandeDTO.setIdInterface(InterfaceFactory.interToInterfaceDTO(demande.getInterface1()).getIdInterface());
         demandeDTO.setNomInterface(InterfaceFactory.interToInterfaceDTO(demande.getInterface1()).getNomInterface());
         return demandeDTO;

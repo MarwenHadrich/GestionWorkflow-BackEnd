@@ -4,7 +4,6 @@ import com.csys.workflow.domain.RoleEquipe;
 
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collection;
 import java.util.List;
 import javax.validation.constraints.Size;
 

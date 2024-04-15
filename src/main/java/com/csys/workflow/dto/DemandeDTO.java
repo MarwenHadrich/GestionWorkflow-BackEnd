@@ -19,6 +19,7 @@ public class DemandeDTO {
 
   private Integer idEmploye;
   private  String nomEmplye;
+  private  String prenomEmploye;
 
 
   private Integer idInterface;
@@ -70,6 +71,14 @@ public class DemandeDTO {
   public void setNomInterface(String nomInterface) {
     this.nomInterface = nomInterface;
   }
+
+    public String getPrenomEmploye() {
+        return prenomEmploye;
+    }
+
+    public void setPrenomEmploye(String prenomEmploye) {
+        this.prenomEmploye = prenomEmploye;
+    }
 
     /*public List<TicketDataDTO> getTicketDataList() {
         return ticketDataList;

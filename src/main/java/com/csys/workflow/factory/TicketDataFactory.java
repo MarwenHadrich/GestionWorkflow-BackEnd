@@ -25,6 +25,8 @@ public class TicketDataFactory {
     // Add idTicket if it exists
     if (ticketdata.getTicket() != null) {
       ticketdataDTO.setIdTicket(TicketFactory.ticketToTicketDTO(ticketdata.getTicket()).getIdTicket());
+        ticketdataDTO.setNomTicket(TicketFactory.ticketToTicketDTO(ticketdata.getTicket()).getNomTicket());
+
     }
     return ticketdataDTO;
   }

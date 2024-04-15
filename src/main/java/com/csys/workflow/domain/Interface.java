@@ -30,7 +30,7 @@ public class Interface implements Serializable {
     @Size(max = 50)
     @Column(name = "nom_interface", length = 50)
     private String nomInterface;
-    @OneToMany(mappedBy = "interface1")
+    @OneToMany(mappedBy = "interface1" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> ticketList;
     @OneToMany(mappedBy = "interface1")
     private List<Workflow> workflowList;
