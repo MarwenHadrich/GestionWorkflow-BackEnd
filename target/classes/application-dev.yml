@@ -92,4 +92,6 @@ email:
     from: marwen.hadrich@csys.com.tn
     to: marwen.hadrich@csys.com.tn
 
-
+jwt:
+    secret: ghazi2909
+    expiration: 100000

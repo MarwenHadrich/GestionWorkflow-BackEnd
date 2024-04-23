@@ -24,7 +24,7 @@ public class EmployeFactory {
     //employeDTO.setValidationList(ValidationFactory.validationToValidationDTOs(employe.getValidationList()));
     //employeDTO.setDemandeList(DemandeFactory.demandeToDemandeDTOs(employe.getDemandeList()));
     // employeDTO.setTypeEmploye(TypeEmployeFactory.typeemployeToTypeEmployeDTO(employe.getTypeEmploye()));
-    //employeDTO.setRoleEquipeList(RoleEquipeFactory.roleequipeToRoleEquipeDTOs(employe.getRoleEquipeList()));
+   // employeDTO.setRoleEquipeList(RoleEquipeFactory.roleequipeToRoleEquipeDTOs(employe.getRoleEquipeList()));
     employeDTO.setIdTypeEmploye(TypeEmployeFactory.typeemployeToTypeEmployeDTO(employe.getTypeEmploye()).getIdTypeEmploye());
     if (employe.getTypeEmploye() != null) {
       employeDTO.setTypeEmploye(TypeEmployeFactory.typeemployeToTypeEmployeDTO(employe.getTypeEmploye()).getTypeemploye());

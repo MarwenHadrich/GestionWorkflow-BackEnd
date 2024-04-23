@@ -59,7 +59,7 @@ public class Employe implements Serializable {
     @JoinColumn(name = "id_type_employe", referencedColumnName = "id_type_employe")
     @ManyToOne
     private TypeEmploye typeEmploye;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employe")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employe" )
     private List<RoleEquipe> roleEquipeList;
 
     public Employe() {

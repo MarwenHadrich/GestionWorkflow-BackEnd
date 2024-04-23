@@ -64,7 +64,7 @@ public class EmployeDTO {
 
 
 
-   // private List<RoleEquipeDTO> roleEquipeList;
+    //private List<RoleEquipeDTO> roleEquipeList;
 
     public Integer getIdEmploye() {
         return idEmploye;
@@ -180,12 +180,12 @@ public class EmployeDTO {
 //        this.typeEmploye = typeEmploye;
 //    }
 
-   /* public List<RoleEquipeDTO> getRoleEquipeList() {
-        return roleEquipeList;
-    }
+//    public List<RoleEquipeDTO> getRoleEquipeList() {
+//        return roleEquipeList;
+//    }
 
-    public void setRoleEquipeList(List<RoleEquipeDTO> roleEquipeList) {
-        this.roleEquipeList = roleEquipeList;
-    }*/
+//    public void setRoleEquipeList(List<RoleEquipeDTO> roleEquipeList) {
+//        this.roleEquipeList = roleEquipeList;
+//    }
 
 }

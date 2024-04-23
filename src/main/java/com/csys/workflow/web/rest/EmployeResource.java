@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * REST controller for managing Employe.
  */
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class EmployeResource {

@@ -11,7 +11,8 @@ public class EquipeFactory {
     EquipeDTO equipeDTO=new EquipeDTO();
     equipeDTO.setIdEquipe(equipe.getIdEquipe());
     equipeDTO.setNomEquipe(equipe.getNomEquipe());
-    equipeDTO.setRoleEquipeList(equipe.getRoleEquipeList());
+//    equipeDTO.setRoleEquipeList(equipe.getRoleEquipeList());
+    equipeDTO.setRoleEquipeList(RoleEquipeFactory.roleequipeToRoleEquipeDTOs(equipe.getRoleEquipeList()));
     return equipeDTO;
   }
 
@@ -19,7 +20,7 @@ public class EquipeFactory {
     Equipe equipe=new Equipe();
     equipe.setIdEquipe(equipeDTO.getIdEquipe());
     equipe.setNomEquipe(equipeDTO.getNomEquipe());
-    equipe.setRoleEquipeList(equipeDTO.getRoleEquipeList());
+    //equipe.setRoleEquipeList(equipeDTO.getRoleEquipeList());
     return equipe;
   }
 

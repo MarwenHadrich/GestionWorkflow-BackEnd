@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DemandeRepository extends JpaRepository<Demande, Integer> {
-    List<Demande> findByEmploye(Employe employe);
+    List<Demande> findByEmploye_IdEmploye(Integer idEmploye);
 }
 

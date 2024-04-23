@@ -17,7 +17,7 @@ public class EquipeDTO {
   )
   private String nomEquipe;
 
-  private List<RoleEquipe> roleEquipeList;
+  private List<RoleEquipeDTO> roleEquipeList;
 
   public Integer getIdEquipe() {
     return idEquipe;
@@ -35,13 +35,7 @@ public class EquipeDTO {
     this.nomEquipe = nomEquipe;
   }
 
-  public List<RoleEquipe> getRoleEquipeList() {
-    return roleEquipeList;
-  }
 
-  public void setRoleEquipeList(List<RoleEquipe> roleEquipeList) {
-    this.roleEquipeList = roleEquipeList;
-  }
 
   /*public List getRoleEquipeList() {
     return roleEquipeList;
@@ -50,5 +44,12 @@ public class EquipeDTO {
   public void setRoleEquipeList(List roleEquipeList) {
     this.roleEquipeList = roleEquipeList;
   }*/
+  public List<RoleEquipeDTO> getRoleEquipeList() {
+    return roleEquipeList;
+  }
+
+  public void setRoleEquipeList(List<RoleEquipeDTO> roleEquipeList) {
+    this.roleEquipeList = roleEquipeList;
+  }
 }
 

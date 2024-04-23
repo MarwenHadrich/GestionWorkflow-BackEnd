@@ -3,6 +3,7 @@ package com.csys.workflow.service;
 import com.csys.workflow.domain.Demande;
 import com.csys.workflow.domain.Employe;
 import com.csys.workflow.dto.DemandeDTO;
+import com.csys.workflow.dto.EmployeDTO;
 import com.csys.workflow.factory.DemandeFactory;
 import com.csys.workflow.repository.DemandeRepository;
 import com.csys.workflow.repository.EmployeRepository;
@@ -26,12 +27,12 @@ public class DemandeService {
   private final Logger log = LoggerFactory.getLogger(DemandeService.class);
 
   private final DemandeRepository demandeRepository;
-  private  final EmployeRepository employeRepository;
+  private  final EmployeService employeService;
 
-  public DemandeService(DemandeRepository demandeRepository, EmployeService employeService, EmployeRepository employeRepository) {
+  public DemandeService(DemandeRepository demandeRepository, EmployeService employeService, EmployeService employeRepository) {
     this.demandeRepository=demandeRepository;
 
-      this.employeRepository = employeRepository;
+      this.employeService = employeService;
   }
 
   /**
@@ -125,20 +126,20 @@ public class DemandeService {
   @Transactional(readOnly = true)
   public List<DemandeDTO> findDemandsByEmployeId(Integer idEmploye) {
     // Retrieve the Employe object corresponding to the given ID
-    Optional<Employe> employeOptional = employeRepository.findById(idEmploye);
+    EmployeDTO employeDTO = employeService.findById(idEmploye);
 
     // If the Employe object is found, use it to find the associated demands
-    if (((Optional<?>) employeOptional).isPresent()) {
-      Employe employe = employeOptional.get();
+    if (employeDTO!=null) {
       // Retrieve the list of demands associated with the given employe
-      List<Demande> demands = demandeRepository.findByEmploye(employe);
+      List<Demande> demands = demandeRepository.findByEmploye_IdEmploye(employeDTO.getIdEmploye());
 
       // Convert the list of Demande entities to DemandeDTOs
       return DemandeFactory.demandeToDemandeDTOs(demands);
     } else {
       // Handle the case where the Employe object with the given ID is not found
       // For example, you could return an empty list or throw an exception
-      return Collections.emptyList();
+      List<Demande> demands = demandeRepository.findAll();
+      return DemandeFactory.demandeToDemandeDTOs(demands);
     }
   }
 }
