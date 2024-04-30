@@ -1,11 +1,15 @@
 package com.csys.workflow.web.rest;
 
+import com.csys.workflow.domain.Employe;
 import com.csys.workflow.dto.InterfaceDTO;
 import com.csys.workflow.service.InterfaceService;
 import com.csys.workflow.util.RestPreconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,6 +19,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -70,10 +75,26 @@ public class InterfaceResource {
         return interfaceService.findAll();
     }
 
+
+
     @DeleteMapping("/interfaces/{id}")
-    public ResponseEntity<Void> deleteInterface(@PathVariable Integer id) {
-        log.debug("Request to delete Interface: {}", id);
-        interfaceService.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> deleteInterface(@PathVariable Integer id) {
+        try {
+            log.debug("Request to delete Interface: {}", id);
+            interfaceService.delete(id);
+            return ResponseEntity.ok().body("Interface deleted successfully.");
+        } catch (DataIntegrityViolationException ex) {
+            String errorMessage = "Deletion cannot be performed due to a constraint violation. There are associated records in  table TicketData.";
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+        } catch (Exception e) {
+            String errorMessage = "An error occurred while deleting the interface: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
+    }
+    @GetMapping("/employes/exists/nomInterface/{nomInterface}")
+    public ResponseEntity<Boolean> checkIfEmployeExistsByTel(@PathVariable String nomInterface) {
+        log.debug("Request to check if Interface exists by nom: {}", nomInterface);
+        boolean exists = interfaceService.existsByNomInterface(nomInterface);
+        return ResponseEntity.ok().body(exists);
     }
 }

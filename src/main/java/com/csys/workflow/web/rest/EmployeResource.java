@@ -139,5 +139,24 @@ public class EmployeResource {
     RestPreconditions.checkFound(dto, "employe.NotFound");
     return ResponseEntity.ok().body(dto);
   }
+  @GetMapping("/employes/exists/login/{login}")
+  public ResponseEntity<Boolean> checkIfEmployeExistsByLogin(@PathVariable String login) {
+    log.debug("Request to check if Employe exists by login: {}", login);
+    boolean exists = employeService.existsByLogin(login);
+    return ResponseEntity.ok().body(exists);
+  }
+  @GetMapping("/employes/exists/email/{email}")
+  public ResponseEntity<Boolean> checkIfEmployeExistsByEmail(@PathVariable String email) {
+    log.debug("Request to check if Employe exists by email: {}", email);
+    boolean exists = employeService.existsByEmail(email);
+    return ResponseEntity.ok().body(exists);
+  }
+  @GetMapping("/employes/exists/tel/{tel}")
+  public ResponseEntity<Boolean> checkIfEmployeExistsByTel(@PathVariable Integer tel) {
+    log.debug("Request to check if Employe exists by Tel: {}", tel);
+    boolean exists = employeService.existsByTel(tel);
+    return ResponseEntity.ok().body(exists);
+  }
+
 }
 

@@ -6,6 +6,7 @@
 package com.csys.workflow.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,6 +31,12 @@ public class Interface implements Serializable {
     @Size(max = 50)
     @Column(name = "nom_interface", length = 50)
     private String nomInterface;
+    @Column(name = "date_creation")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreation;
+    @Column(name = "date_modification")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateModification;
     @OneToMany(mappedBy = "interface1" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> ticketList;
     @OneToMany(mappedBy = "interface1")
@@ -42,6 +49,7 @@ public class Interface implements Serializable {
 
     public Interface(Integer idInterface) {
         this.idInterface = idInterface;
+
     }
 
     public Integer getIdInterface() {
@@ -109,5 +117,21 @@ public class Interface implements Serializable {
 
     public void setWorkflowList(List<Workflow> workflowList) {
         this.workflowList = workflowList;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Date getDateModification() {
+        return dateModification;
+    }
+
+    public void setDateModification(Date dateModification) {
+        this.dateModification = dateModification;
     }
 }

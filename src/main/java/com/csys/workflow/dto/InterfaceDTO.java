@@ -2,6 +2,7 @@ package com.csys.workflow.dto;
 
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Date;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,7 +17,8 @@ public class InterfaceDTO {
             max = 50
     )
     private String nomInterface;
-
+    private Date dateCreation;
+    private Date dateModification;
     /* List<TicketDTO> ticketList;
 
     private List<WorkflowDTO> workflowList;
@@ -37,6 +39,22 @@ public class InterfaceDTO {
 
     public void setNomInterface(String nomInterface) {
         this.nomInterface = nomInterface;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Date getDateModification() {
+        return dateModification;
+    }
+
+    public void setDateModification(Date dateModification) {
+        this.dateModification = dateModification;
     }
 /*
     public List<TicketDTO> getTicketList() {

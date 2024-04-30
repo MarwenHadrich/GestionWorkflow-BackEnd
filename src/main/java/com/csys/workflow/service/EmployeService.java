@@ -119,5 +119,30 @@ public class EmployeService {
     Employe employe = employeRepository.findByLogin(login);
     return EmployeFactory.employeToEmployeDTO(employe);
   }
+  @Transactional(readOnly = true)
+  public boolean existsByLogin(String login) {
+    log.debug("Request to check if Employe exists by login: {}", login);
+    Employe employe = employeRepository.findByLogin(login);
+    return employe != null;
+  }
+  @Transactional(readOnly = true)
+  public EmployeDTO findByEmail(String email) {
+    log.debug("Request to get Employe by email: {}", email);
+    Employe employe = employeRepository.findByEmailEmploye(email);
+    return EmployeFactory.employeToEmployeDTO(employe);
+  }
+  @Transactional(readOnly = true)
+  public boolean existsByEmail(String email) {
+    log.debug("Request to check if Employe exists by login: {}", email);
+    Employe employe = employeRepository.findByEmailEmploye(email);
+    return employe != null;
+  }
+  @Transactional(readOnly = true)
+  public boolean existsByTel(Integer tel) {
+    log.debug("Request to check if Employe exists by login: {}", tel);
+    Employe employe = employeRepository.findByTel(tel);
+    return employe != null;
+  }
+
 }
 

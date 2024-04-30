@@ -1,16 +1,20 @@
 package com.csys.workflow.service;
 
+import com.csys.workflow.domain.Employe;
 import com.csys.workflow.domain.Interface;
 import com.csys.workflow.dto.InterfaceDTO;
 import com.csys.workflow.factory.InterfaceFactory;
 import com.csys.workflow.repository.InterfaceRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
+import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 /**
  * Service Implementation for managing Interface.
@@ -49,14 +53,31 @@ public class InterfaceService {
    * @param interfaceDTO
    * @return the updated entity
    */
+//  public InterfaceDTO update(InterfaceDTO interfaceDTO) {
+//    log.debug("Request to update Interface: {}",interfaceDTO);
+//    Interface inBase= interfaceRepository.findById(interfaceDTO.getIdInterface()).orElse(null);
+//    Preconditions.checkArgument(inBase != null, "inter.NotFound");
+//    Interface inter = InterfaceFactory.interDTOToInterface(interfaceDTO);
+//    inter = interfaceRepository.save(inter);
+//    InterfaceDTO resultDTO = InterfaceFactory.interToInterfaceDTO(inter);
+//    return resultDTO;
+//  }
+  @Transactional
   public InterfaceDTO update(InterfaceDTO interfaceDTO) {
-    log.debug("Request to update Interface: {}",interfaceDTO);
-    Interface inBase= interfaceRepository.findById(interfaceDTO.getIdInterface()).orElse(null);
-    Preconditions.checkArgument(inBase != null, "inter.NotFound");
-    Interface inter = InterfaceFactory.interDTOToInterface(interfaceDTO);
-    inter = interfaceRepository.save(inter);
-    InterfaceDTO resultDTO = InterfaceFactory.interToInterfaceDTO(inter);
-    return resultDTO;
+    // Retrieve the Interface entity from the database
+    Interface inter = interfaceRepository.findById(interfaceDTO.getIdInterface())
+            .orElseThrow(() -> new EntityNotFoundException("Interface not found with id: " + interfaceDTO.getIdInterface()));
+
+    // Update the interface name
+    inter.setNomInterface(interfaceDTO.getNomInterface());
+    inter.setDateCreation(interfaceDTO.getDateCreation());
+    inter.setDateModification(new Date());
+
+    // Save the updated entity
+    Interface updatedInterface = interfaceRepository.save(inter);
+
+    // Convert the updated entity to DTO and return
+    return InterfaceFactory.interToInterfaceDTO(updatedInterface);
   }
 
   /**
@@ -112,6 +133,12 @@ public class InterfaceService {
   public void delete(Integer id) {
     log.debug("Request to delete Interface: {}",id);
     interfaceRepository.deleteById(id);
+  }
+  @Transactional(readOnly = true)
+  public boolean existsByNomInterface(String nomInterface) {
+    log.debug("Request to check if Interface exists by nom: {}", nomInterface);
+    Interface inter = interfaceRepository.findByNomInterface(nomInterface);
+    return inter != null;
   }
 }
 
