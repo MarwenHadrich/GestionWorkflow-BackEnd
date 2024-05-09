@@ -1,11 +1,16 @@
 package com.csys.workflow.service;
 
 import com.csys.workflow.domain.Etape;
+import com.csys.workflow.domain.Ticket;
+import com.csys.workflow.domain.Workflow;
 import com.csys.workflow.dto.EtapeDTO;
 import com.csys.workflow.factory.EtapeFactory;
+import com.csys.workflow.factory.TicketFactory;
 import com.csys.workflow.repository.EtapeRepository;
+import com.csys.workflow.repository.WorkflowRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
+import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +26,11 @@ public class EtapeService {
   private final Logger log = LoggerFactory.getLogger(EtapeService.class);
 
   private final EtapeRepository etapeRepository;
+  private final WorkflowRepository workflowRepository;
 
-  public EtapeService(EtapeRepository etapeRepository) {
+  public EtapeService(EtapeRepository etapeRepository, WorkflowRepository workflowRepository) {
     this.etapeRepository=etapeRepository;
+      this.workflowRepository = workflowRepository;
   }
 
   /**
@@ -112,6 +119,23 @@ public class EtapeService {
   public void delete(Integer id) {
     log.debug("Request to delete Etape: {}",id);
     etapeRepository.deleteById(id);
+  }
+  public List<EtapeDTO> findEtapesByWorkflowId(Integer idWorkflow) {
+    // Retrieve the Interface object corresponding to the given ID
+
+    Workflow workflowObject = workflowRepository.findById(idWorkflow).orElse(null);
+
+    // If the Interface object is found, use it to find the associated tickets
+    if (workflowObject != null) {
+      // Retrieve the list of tickets associated with the given interface
+      List<Etape> workflows = etapeRepository.findByWorkflow(workflowObject);
+
+      // Convert the list of Ticket entities to TicketDTOs
+      return EtapeFactory.etapeToEtapeDTOs(workflows);
+    } else {
+
+      return Collections.emptyList();
+    }
   }
 }
 

@@ -33,9 +33,11 @@ public class Workflow implements Serializable {
     @OneToMany(mappedBy = "workflow")
     private List<Etape> etapeList;
 
-    @JoinColumn(name = "id_interface", referencedColumnName = "id_interface")
-    @ManyToOne
-    private Interface interface1;
+//    @JoinColumn(name = "id_interface", referencedColumnName = "id_interface")
+//    @ManyToOne
+//    private Interface interface1;
+    @OneToMany(mappedBy = "workflow")
+    private List<Interface> interfaces;
 
     public Workflow() {
     }
@@ -68,13 +70,13 @@ public class Workflow implements Serializable {
         this.etapeList = etapeList;
     }
 
-    public Interface getInterface1() {
-        return interface1;
-    }
-
-    public void setInterface1(Interface interface1) {
-        this.interface1 = interface1;
-    }
+//    public Interface getInterface1() {
+//        return interface1;
+//    }
+//
+//    public void setInterface1(Interface interface1) {
+//        this.interface1 = interface1;
+//    }
 
     @Override
     public int hashCode() {
@@ -101,4 +103,12 @@ public class Workflow implements Serializable {
         return "com.csys.workflow.domain.Workflow[ idWorkflow=" + idWorkflow + " ]";
     }
 
+
+    public List<Interface> getInterfaces() {
+        return interfaces;
+    }
+
+    public void setInterfaces(List<Interface> interfaces) {
+        this.interfaces = interfaces;
+    }
 }

@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 public class DemandeDTO {
  // @NotNull
   private Integer idDemande;
+    private String status;
 
-  @Temporal(TemporalType.DATE)
   private Date dateCreationDemande;
 
   //private List<TicketDataDTO> ticketDataList;
@@ -20,9 +20,8 @@ public class DemandeDTO {
   private Integer idEmploye;
   private  String nomEmplye;
   private  String prenomEmploye;
-
-
   private Integer idInterface;
+    private Integer idWorkflow;
   private String nomInterface;
   public Integer getIdDemande() {
     return idDemande;
@@ -78,6 +77,22 @@ public class DemandeDTO {
 
     public void setPrenomEmploye(String prenomEmploye) {
         this.prenomEmploye = prenomEmploye;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getIdWorkflow() {
+        return idWorkflow;
+    }
+
+    public void setIdWorkflow(Integer idWorkflow) {
+        this.idWorkflow = idWorkflow;
     }
 
     /*public List<TicketDataDTO> getTicketDataList() {

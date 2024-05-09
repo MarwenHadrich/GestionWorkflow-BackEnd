@@ -35,6 +35,8 @@ public class ValidationFactory {
     Demande demande = new Demande();
     Employe employe = new Employe();
     Interface inter = new Interface();
+      Workflow workflow2=new Workflow();
+      inter.setWorkflow(workflow2);
     demande.setInterface1(inter);
     TypeEmploye typeEmploye = new TypeEmploye();
     employe.setTypeEmploye(typeEmploye);
@@ -49,9 +51,9 @@ public class ValidationFactory {
    validation.setEmploye(employe1);
     // Set Etape with idEtape
     Etape etape = new Etape();
-    Workflow workflow = new Workflow();
-    Interface inter2 = new Interface();
-    workflow.setInterface1(inter2);
+      Interface inter2=new Interface();
+      Workflow workflow=new Workflow();
+      inter2.setWorkflow(workflow);
     etape.setWorkflow(workflow);
     etape.setIdEtape(validationDTO.getIdEtape());
     validation.setEtape(etape);

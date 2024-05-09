@@ -7,6 +7,8 @@ import com.csys.workflow.repository.EmployeRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -116,14 +118,14 @@ public class EmployeService {
   @Transactional(readOnly = true)
   public EmployeDTO findByLogin(String login) {
     log.debug("Request to get Employe by login: {}", login);
-    Employe employe = employeRepository.findByLogin(login);
-    return EmployeFactory.employeToEmployeDTO(employe);
+    Optional<Employe> employeOptional = employeRepository.findByLogin(login);
+    return employeOptional.map(EmployeFactory::employeToEmployeDTO).orElse(null);
   }
   @Transactional(readOnly = true)
   public boolean existsByLogin(String login) {
     log.debug("Request to check if Employe exists by login: {}", login);
-    Employe employe = employeRepository.findByLogin(login);
-    return employe != null;
+    Optional<Employe> employe = employeRepository.findByLogin(login);
+    return employe.isPresent();
   }
   @Transactional(readOnly = true)
   public EmployeDTO findByEmail(String email) {
@@ -133,7 +135,7 @@ public class EmployeService {
   }
   @Transactional(readOnly = true)
   public boolean existsByEmail(String email) {
-    log.debug("Request to check if Employe exists by login: {}", email);
+    log.debug("Request to check if Employe exists by email: {}", email);
     Employe employe = employeRepository.findByEmailEmploye(email);
     return employe != null;
   }

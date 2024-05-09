@@ -1,6 +1,7 @@
 package com.csys.workflow.factory;
 
 import com.csys.workflow.domain.Interface;
+import com.csys.workflow.domain.Workflow;
 import com.csys.workflow.dto.InterfaceDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,8 @@ public class InterfaceFactory {
     interDTO.setNomInterface(inter.getNomInterface());
     interDTO.setDateCreation(inter.getDateCreation());
     interDTO.setDateModification(inter.getDateModification());
+    interDTO.setIdWorkflow(WorkflowFactory.workflowToWorkflowDTO(inter.getWorkflow()).getIdWorkflow());
+    interDTO.setNomWorkflow(WorkflowFactory.workflowToWorkflowDTO(inter.getWorkflow()).getNomWorkflow());
  //   interDTO.setDateCreationInterface(inter.getDateCreationInterface());
 //    interDTO.setTicketDataList(inter.getTicketDataList());
 //    interDTO.setValidationList(inter.getValidationList());
@@ -27,6 +30,13 @@ public class InterfaceFactory {
     inter.setIdInterface(interDTO.getIdInterface());
     inter.setNomInterface(interDTO.getNomInterface());
     inter.setDateCreation(new Date());
+
+        if (interDTO.getIdWorkflow() != null) {
+            if (inter.getWorkflow() == null) {
+                inter.setWorkflow(new Workflow()); // Assuming Interface is the class name
+            }
+            inter.getWorkflow().setIdWorkflow(interDTO.getIdWorkflow());
+        }
 //    inter.setDateCreationInterface(interDTO.getDateCreationInterface());
 //    inter.setTicketDataList(interDTO.getTicketDataList());
 //    inter.setValidationList(interDTO.getValidationList());

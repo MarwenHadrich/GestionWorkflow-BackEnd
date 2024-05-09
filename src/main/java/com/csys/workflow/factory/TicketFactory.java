@@ -3,6 +3,7 @@ package com.csys.workflow.factory;
 import com.csys.workflow.domain.Interface;
 import com.csys.workflow.domain.Ticket;
 import com.csys.workflow.domain.TypeTicket;
+import com.csys.workflow.domain.Workflow;
 import com.csys.workflow.dto.TicketDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,8 @@ public class TicketFactory {
 
 
       Interface interf = new Interface();
+    Workflow workflow=new Workflow();
+    interf.setWorkflow(workflow);
       interf.setIdInterface(ticketDTO.getIdInterface());
       ticket.setInterface1(interf);
 
@@ -48,6 +51,8 @@ public class TicketFactory {
       TypeTicket typeTicket = new TypeTicket();
       typeTicket.setIdTypeTicket(ticketDTO.getIdTypeTicket());
       ticket.setTypeTicket(typeTicket);
+
+
 
 
 

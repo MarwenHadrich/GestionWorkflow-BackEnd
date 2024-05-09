@@ -119,5 +119,11 @@ public class WorkflowResource {
     workflowService.delete(id);
     return ResponseEntity.ok().build();
   }
+  @GetMapping("/workflows/exists/nomWorkflow/{nomWorkflow}")
+  public ResponseEntity<Boolean> checkIfWorkflowExistsByNomWorkflow(@PathVariable String nomWorkflow) {
+    log.debug("Request to check if Interface exists by nom: {}", nomWorkflow);
+    boolean exists = workflowService.existsByNomWorkflow(nomWorkflow);
+    return ResponseEntity.ok().body(exists);
+  }
 }
 

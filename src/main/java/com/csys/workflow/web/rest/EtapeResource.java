@@ -1,6 +1,9 @@
 package com.csys.workflow.web.rest;
 
+
 import com.csys.workflow.dto.EtapeDTO;
+
+import com.csys.workflow.dto.TicketDTO;
 import com.csys.workflow.service.EtapeService;
 import com.csys.workflow.service.WorkflowService;
 import com.csys.workflow.util.RestPreconditions;
@@ -9,6 +12,7 @@ import java.lang.String;
 import java.lang.Void;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -136,5 +140,11 @@ public class EtapeResource {
     etapeService.delete(id);
     return ResponseEntity.ok().build();
   }
+  @GetMapping("/etapes/workflow/{id}")
+  public List<EtapeDTO> getEtapesByWorkflow(@PathVariable Integer id) {
+    log.debug("Request to get all  Etapes by workflow id : {}",id);
+    return etapeService.findEtapesByWorkflowId(id);
+  }
+
 }
 

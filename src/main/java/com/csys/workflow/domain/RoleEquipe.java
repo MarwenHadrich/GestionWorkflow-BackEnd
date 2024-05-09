@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "RoleEquipe")
 @NamedQueries({
-    @NamedQuery(name = "RoleEquipe.findAll", query = "SELECT r FROM RoleEquipe r")})
+        @NamedQuery(name = "RoleEquipe.findAll", query = "SELECT r FROM RoleEquipe r")})
 public class RoleEquipe implements Serializable {
 
     private static final long serialVersionUID = 1L;

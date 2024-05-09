@@ -31,8 +31,8 @@ public class EtapeFactory {
         etape.setOrdre(etapeDTO.getOrdre());
         // Ensure that the workflow is not null before setting its ID
             Workflow workflow = new Workflow();
-            Interface interface1=new Interface();
-            workflow.setInterface1(interface1);
+//            Interface interface1=new Interface();
+//            workflow.setInterface1(interface1);
             workflow.setIdWorkflow(etapeDTO.getIdWorkflow());
             etape.setWorkflow(workflow);
 

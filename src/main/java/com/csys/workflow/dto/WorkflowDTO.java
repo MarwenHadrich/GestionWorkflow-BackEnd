@@ -17,8 +17,9 @@ public class WorkflowDTO {
   private String nomWorkflow;
 
   //private List<EtapeDTO> etapeList;
-  private Integer idInterface1;
-  private String nomInterface1;
+//  private Integer idInterface1;
+//  private String nomInterface1;
+
 
   //private InterfaceDTO interface1;
 
@@ -46,21 +47,21 @@ public class WorkflowDTO {
         this.interface1 = interface1;
     }*/
 
-  public Integer getIdInterface1() {
-    return idInterface1;
-  }
-
-  public void setIdInterface1(Integer idInterface1) {
-    this.idInterface1 = idInterface1;
-  }
-
-  public String getNomInterface1() {
-    return nomInterface1;
-  }
-
-  public void setNomInterface1(String nomInterface1) {
-    this.nomInterface1 = nomInterface1;
-  }
+//  public Integer getIdInterface1() {
+//    return idInterface1;
+//  }
+//
+//  public void setIdInterface1(Integer idInterface1) {
+//    this.idInterface1 = idInterface1;
+//  }
+//
+//  public String getNomInterface1() {
+//    return nomInterface1;
+//  }
+//
+//  public void setNomInterface1(String nomInterface1) {
+//    this.nomInterface1 = nomInterface1;
+//  }
 
   // public List<EtapeDTO> getEtapeList() {
      //   return etapeList;

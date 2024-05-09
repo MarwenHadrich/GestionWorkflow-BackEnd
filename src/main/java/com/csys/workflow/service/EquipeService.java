@@ -23,8 +23,10 @@ public class EquipeService {
 
     private final EquipeRepository equipeRepository;
 
-    public EquipeService(EquipeRepository equipeRepository) {
+
+    public EquipeService(EquipeRepository equipeRepository, RoleEquipeService roleEquipeService) {
         this.equipeRepository = equipeRepository;
+
     }
 
     /**

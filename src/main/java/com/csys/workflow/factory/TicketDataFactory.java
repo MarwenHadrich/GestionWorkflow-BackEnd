@@ -40,12 +40,16 @@ public class TicketDataFactory {
     TypeTicket typeTicket = new TypeTicket();
     ticket.setTypeTicket(typeTicket);
     Interface inter = new Interface();
+      Workflow workflow=new Workflow();
+      inter.setWorkflow(workflow);
     ticket.setInterface1(inter);
     ticket.setIdTicket(ticketdataDTO.getIdTicket());
     ticketdata.setTicket(ticket);
     // Add idDemande to the Demande object
     Demande demande = new Demande();
     Interface inter2=new Interface();
+      Workflow workflow2=new Workflow();
+      inter2.setWorkflow(workflow2);
     demande.setInterface1(inter2);
     Employe employe = new Employe();
     TypeEmploye typeEmploye = new TypeEmploye();

@@ -92,7 +92,7 @@ public class InterfaceResource {
         }
     }
     @GetMapping("/employes/exists/nomInterface/{nomInterface}")
-    public ResponseEntity<Boolean> checkIfEmployeExistsByTel(@PathVariable String nomInterface) {
+    public ResponseEntity<Boolean> checkIfEmployeExistsByNomInterface(@PathVariable String nomInterface) {
         log.debug("Request to check if Interface exists by nom: {}", nomInterface);
         boolean exists = interfaceService.existsByNomInterface(nomInterface);
         return ResponseEntity.ok().body(exists);

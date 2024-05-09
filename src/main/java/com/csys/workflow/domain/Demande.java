@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,10 +29,13 @@ public class Demande implements Serializable {
     //@NotNull
     @Column(name = "id_demande", nullable = false)
     private Integer idDemande;
+    @Size(max = 100)
+    @Column(name = "status", length = 100)
+    private String status;
     @Column(name = "date_creation_demande")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreationDemande;
-    @OneToMany(mappedBy = "demande")
+    @OneToMany(mappedBy = "demande", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TicketData> ticketDataList;
     @OneToMany(mappedBy = "demande")
     private List<Validation> validationList;
@@ -121,5 +125,12 @@ public class Demande implements Serializable {
     public String toString() {
         return "com.csys.workflow.domain.Demande[ idDemande=" + idDemande + " ]";
     }
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -5,6 +5,8 @@
  */
 package com.csys.workflow.domain;
 
+import liquibase.pro.packaged.W;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -39,8 +41,11 @@ public class Interface implements Serializable {
     private Date dateModification;
     @OneToMany(mappedBy = "interface1" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> ticketList;
-    @OneToMany(mappedBy = "interface1")
-    private List<Workflow> workflowList;
+//    @OneToMany(mappedBy = "interface1")
+//    private List<Workflow> workflowList;
+    @JoinColumn(name = "id_workflow", referencedColumnName = "id_workflow")
+    @ManyToOne
+    private Workflow workflow;
     @OneToMany(mappedBy = "interface1")
     private List<Demande> demandeList;
 
@@ -111,13 +116,13 @@ public class Interface implements Serializable {
         return "com.csys.workflow.domain.Interface[ idInterface=" + idInterface + " ]";
     }
 
-    public List<Workflow> getWorkflowList() {
-        return workflowList;
-    }
-
-    public void setWorkflowList(List<Workflow> workflowList) {
-        this.workflowList = workflowList;
-    }
+//    public List<Workflow> getWorkflowList() {
+//        return workflowList;
+//    }
+//
+//    public void setWorkflowList(List<Workflow> workflowList) {
+//        this.workflowList = workflowList;
+//    }
 
     public Date getDateCreation() {
         return dateCreation;
@@ -133,5 +138,13 @@ public class Interface implements Serializable {
 
     public void setDateModification(Date dateModification) {
         this.dateModification = dateModification;
+    }
+
+    public Workflow getWorkflow() {
+        return workflow;
+    }
+
+    public void setWorkflow(Workflow workflow) {
+        this.workflow = workflow;
     }
 }

@@ -2,9 +2,11 @@ package com.csys.workflow.service;
 
 import com.csys.workflow.domain.Employe;
 import com.csys.workflow.domain.Interface;
+import com.csys.workflow.domain.Workflow;
 import com.csys.workflow.dto.InterfaceDTO;
 import com.csys.workflow.factory.InterfaceFactory;
 import com.csys.workflow.repository.InterfaceRepository;
+import com.csys.workflow.repository.WorkflowRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
 import java.util.Date;
@@ -25,9 +27,11 @@ public class InterfaceService {
   private final Logger log = LoggerFactory.getLogger(InterfaceService.class);
 
   private final InterfaceRepository interfaceRepository;
+  private final WorkflowRepository workflowRepository;
 
-  public InterfaceService(InterfaceRepository interfaceRepository) {
+  public InterfaceService(InterfaceRepository interfaceRepository, WorkflowRepository workflowRepository) {
     this.interfaceRepository=interfaceRepository;
+      this.workflowRepository = workflowRepository;
   }
 
   /**
@@ -72,6 +76,11 @@ public class InterfaceService {
     inter.setNomInterface(interfaceDTO.getNomInterface());
     inter.setDateCreation(interfaceDTO.getDateCreation());
     inter.setDateModification(new Date());
+    Workflow workflow = workflowRepository.findById(interfaceDTO.getIdWorkflow())
+            .orElseThrow(() -> new EntityNotFoundException("Workflow not found with id: " + interfaceDTO.getIdWorkflow()));
+
+    // Associate the updated Workflow with the Interface
+    inter.setWorkflow(workflow);
 
     // Save the updated entity
     Interface updatedInterface = interfaceRepository.save(inter);

@@ -1,5 +1,6 @@
 package com.csys.workflow.service;
 
+import com.csys.workflow.domain.Interface;
 import com.csys.workflow.domain.Workflow;
 import com.csys.workflow.dto.WorkflowDTO;
 import com.csys.workflow.factory.WorkflowFactory;
@@ -112,6 +113,12 @@ public class WorkflowService {
   public void delete(Integer id) {
     log.debug("Request to delete Workflow: {}",id);
     workflowRepository.deleteById(id);
+  }
+  @Transactional(readOnly = true)
+  public boolean existsByNomWorkflow(String nomWorkflow) {
+    log.debug("Request to check if Workflow exists by nom: {}", nomWorkflow);
+    Workflow workflow = workflowRepository.findByNomWorkflow(nomWorkflow);
+    return workflow != null;
   }
 }
 

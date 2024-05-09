@@ -1,11 +1,9 @@
 package com.csys.workflow.factory;
 
-import com.csys.workflow.domain.Demande;
-import com.csys.workflow.domain.Employe;
-import com.csys.workflow.domain.Interface;
-import com.csys.workflow.domain.TypeEmploye;
+import com.csys.workflow.domain.*;
 import com.csys.workflow.dto.DemandeDTO;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DemandeFactory {
@@ -13,7 +11,9 @@ public class DemandeFactory {
     public static DemandeDTO demandeToDemandeDTO(Demande demande) {
         DemandeDTO demandeDTO = new DemandeDTO();
         demandeDTO.setIdDemande(demande.getIdDemande());
+        demandeDTO.setStatus(demande.getStatus());
         demandeDTO.setDateCreationDemande(demande.getDateCreationDemande());
+
         //demandeDTO.setTicketDataList(TicketDataFactory.ticketdataToTicketDataDTOs(demande.getTicketDataList()));
         // demandeDTO.setValidationList(ValidationFactory.validationToValidationDTOs(demande.getValidationList()));
         //demandeDTO.setEmploye(EmployeFactory.employeToEmployeDTO(demande.getEmploye()));
@@ -22,6 +22,7 @@ public class DemandeFactory {
         demandeDTO.setNomEmplye(EmployeFactory.employeToEmployeDTO(demande.getEmploye()).getNomEmploye());
         demandeDTO.setPrenomEmploye(EmployeFactory.employeToEmployeDTO(demande.getEmploye()).getPrenomEmploye());
         demandeDTO.setIdInterface(InterfaceFactory.interToInterfaceDTO(demande.getInterface1()).getIdInterface());
+        demandeDTO.setIdWorkflow(InterfaceFactory.interToInterfaceDTO(demande.getInterface1()).getIdWorkflow());
         demandeDTO.setNomInterface(InterfaceFactory.interToInterfaceDTO(demande.getInterface1()).getNomInterface());
         return demandeDTO;
     }
@@ -29,7 +30,8 @@ public class DemandeFactory {
     public static Demande demandeDTOToDemande(DemandeDTO demandeDTO) {
         Demande demande = new Demande();
         demande.setIdDemande(demandeDTO.getIdDemande());
-        demande.setDateCreationDemande(demandeDTO.getDateCreationDemande());
+        demande.setStatus(demandeDTO.getStatus());
+        demande.setDateCreationDemande(new Date());
 //        demande.setTicketDataList(TicketDataFactory. demandeDTO.getTicketDataList());
 //        demande.setValidationList(ValidationFactory demandeDTO.getValidationList());
 //        demande.setEmploye(EmployeFactory.employeToEmployeDTO(demandeDTO.getEmploye()) );
@@ -46,6 +48,8 @@ public class DemandeFactory {
         // Set the Interface object
 
             Interface interface1 = new Interface();
+        Workflow workflow=new Workflow();
+        interface1.setWorkflow(workflow);
             interface1.setIdInterface(demandeDTO.getIdInterface());
             demande.setInterface1(interface1);
 

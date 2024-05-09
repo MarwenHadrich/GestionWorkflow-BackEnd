@@ -19,6 +19,8 @@ public class InterfaceDTO {
     private String nomInterface;
     private Date dateCreation;
     private Date dateModification;
+    private Integer idWorkflow;
+    private String nomWorkflow;
     /* List<TicketDTO> ticketList;
 
     private List<WorkflowDTO> workflowList;
@@ -55,6 +57,22 @@ public class InterfaceDTO {
 
     public void setDateModification(Date dateModification) {
         this.dateModification = dateModification;
+    }
+
+    public Integer getIdWorkflow() {
+        return idWorkflow;
+    }
+
+    public void setIdWorkflow(Integer idWorkflow) {
+        this.idWorkflow = idWorkflow;
+    }
+
+    public String getNomWorkflow() {
+        return nomWorkflow;
+    }
+
+    public void setNomWorkflow(String nomWorkflow) {
+        this.nomWorkflow = nomWorkflow;
     }
 /*
     public List<TicketDTO> getTicketList() {

@@ -1,8 +1,10 @@
 package com.csys.workflow.web.rest;
 
 import com.csys.workflow.dto.EquipeDTO;
+import com.csys.workflow.dto.RoleEquipeDTO;
 import com.csys.workflow.repository.EquipeRepository;
 import com.csys.workflow.service.EquipeService;
+import com.csys.workflow.service.RoleEquipeService;
 import com.csys.workflow.util.RestPreconditions;
 import java.lang.Integer;
 import java.lang.String;
@@ -34,12 +36,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class EquipeResource {
   private static final String ENTITY_NAME = "equipe";
 
+  private final RoleEquipeService roleEquipeService;
+
   private final EquipeService equipeService;
 
   private final Logger log = LoggerFactory.getLogger(EquipeService.class);
 
-  public EquipeResource(EquipeService equipeService) {
-    this.equipeService=equipeService;
+  public EquipeResource(RoleEquipeService roleEquipeService, EquipeService equipeService) {
+      this.roleEquipeService = roleEquipeService;
+      this.equipeService=equipeService;
   }
 
   /**
@@ -54,10 +59,7 @@ public class EquipeResource {
   @PostMapping("/equipes")
   public ResponseEntity<EquipeDTO> createEquipe(@Valid @RequestBody EquipeDTO equipeDTO, BindingResult bindingResult) throws URISyntaxException, MethodArgumentNotValidException {
     log.debug("REST request to save Equipe : {}", equipeDTO);
-//    if (equipeDTO.getIdEquipe() != null && equipeService.existsById(equipeDTO.getIdEquipe())) {
-//      bindingResult.addError(new FieldError("EquipeDTO", "id", "Equipe with this ID already exists."));
-//      throw new MethodArgumentNotValidException(null, bindingResult);
-//    }
+
 
     if ( equipeDTO.getIdEquipe() != null) {
       bindingResult.addError( new FieldError("EquipeDTO","idEquipe","POST method does not accepte "+ENTITY_NAME+" with code"));
@@ -69,6 +71,7 @@ public class EquipeResource {
     EquipeDTO result = equipeService.save(equipeDTO);
     return ResponseEntity.created( new URI("/api/equipes/"+ result.getIdEquipe())).body(result);
   }
+
 
   /**
    * PUT  /equipes : Updates an existing equipe.
