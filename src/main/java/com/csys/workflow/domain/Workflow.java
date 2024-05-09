@@ -30,7 +30,7 @@ public class Workflow implements Serializable {
     @Size(max = 50)
     @Column(name = "nom_workflow", length = 50)
     private String nomWorkflow;
-    @OneToMany(mappedBy = "workflow")
+    @OneToMany(mappedBy = "workflow" , cascade = CascadeType.ALL, orphanRemoval = true )
     private List<Etape> etapeList;
 
 //    @JoinColumn(name = "id_interface", referencedColumnName = "id_interface")

@@ -5,7 +5,7 @@ import static com.querydsl.core.types.PathMetadataFactory.*;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 
@@ -23,7 +23,6 @@ public class QEmploye extends EntityPathBase<Employe> {
     public static final QEmploye employe = new QEmploye("employe");
 
     public final StringPath adresse = createString("adresse");
-
 
     public final DatePath<java.util.Date> dateNaissance = createDate("dateNaissance", java.util.Date.class);
 
