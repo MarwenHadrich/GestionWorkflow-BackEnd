@@ -25,7 +25,7 @@ import javax.validation.constraints.Size;
 @Table(name = "Employe")
 @NamedQueries({
     @NamedQuery(name = "Employe.findAll", query = "SELECT e FROM Employe e")})
-public class Employe implements Serializable, UserDetails {
+public class Employe implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -203,41 +203,5 @@ public class Employe implements Serializable, UserDetails {
     public String toString() {
         return "com.csys.workflow.domain.Employe[ idEmploye=" + idEmploye + " ]";
     }
-    @Enumerated(EnumType.STRING)
-    @Column(name = "authority")
-private Authority authority;
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(authority.name()));
-    }
 
-    @Override
-    public String getPassword() {
-        return mdp;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

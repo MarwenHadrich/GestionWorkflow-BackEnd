@@ -5,7 +5,7 @@ import static com.querydsl.core.types.PathMetadataFactory.*;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 
@@ -22,13 +22,15 @@ public class QDemande extends EntityPathBase<Demande> {
 
     public static final QDemande demande = new QDemande("demande");
 
-    public final DatePath<java.util.Date> dateCreationDemande = createDate("dateCreationDemande", java.util.Date.class);
+    public final DateTimePath<java.util.Date> dateCreationDemande = createDateTime("dateCreationDemande", java.util.Date.class);
 
     protected QEmploye employe;
 
     public final NumberPath<Integer> idDemande = createNumber("idDemande", Integer.class);
 
     protected QInterface interface1;
+
+    public final StringPath status = createString("status");
 
     public final ListPath<TicketData, QTicketData> ticketDataList = this.<TicketData, QTicketData>createList("ticketDataList", TicketData.class, QTicketData.class, PathInits.DIRECT2);
 
@@ -53,7 +55,7 @@ public class QDemande extends EntityPathBase<Demande> {
     public QDemande(Class<? extends Demande> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.employe = inits.isInitialized("employe") ? new QEmploye(forProperty("employe"), inits.get("employe")) : null;
-        this.interface1 = inits.isInitialized("interface1") ? new QInterface(forProperty("interface1")) : null;
+        this.interface1 = inits.isInitialized("interface1") ? new QInterface(forProperty("interface1"), inits.get("interface1")) : null;
     }
 
     public QEmploye employe() {

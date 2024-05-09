@@ -5,7 +5,7 @@ import static com.querydsl.core.types.PathMetadataFactory.*;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 
@@ -52,7 +52,7 @@ public class QEtape extends EntityPathBase<Etape> {
 
     public QEtape(Class<? extends Etape> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.workflow = inits.isInitialized("workflow") ? new QWorkflow(forProperty("workflow"), inits.get("workflow")) : null;
+        this.workflow = inits.isInitialized("workflow") ? new QWorkflow(forProperty("workflow")) : null;
     }
 
     public QWorkflow workflow() {

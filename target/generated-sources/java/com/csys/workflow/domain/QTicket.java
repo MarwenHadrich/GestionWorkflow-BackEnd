@@ -5,7 +5,7 @@ import static com.querydsl.core.types.PathMetadataFactory.*;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 
@@ -34,6 +34,8 @@ public class QTicket extends EntityPathBase<Ticket> {
 
     public final NumberPath<Integer> ordreTicket = createNumber("ordreTicket", Integer.class);
 
+    public final StringPath placeholder = createString("placeholder");
+
     public final StringPath regleTicket = createString("regleTicket");
 
     public final ListPath<TicketData, QTicketData> ticketDataList = this.<TicketData, QTicketData>createList("ticketDataList", TicketData.class, QTicketData.class, PathInits.DIRECT2);
@@ -58,7 +60,7 @@ public class QTicket extends EntityPathBase<Ticket> {
 
     public QTicket(Class<? extends Ticket> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.interface1 = inits.isInitialized("interface1") ? new QInterface(forProperty("interface1")) : null;
+        this.interface1 = inits.isInitialized("interface1") ? new QInterface(forProperty("interface1"), inits.get("interface1")) : null;
         this.typeTicket = inits.isInitialized("typeTicket") ? new QTypeTicket(forProperty("typeTicket")) : null;
     }
 
