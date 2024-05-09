@@ -16,11 +16,10 @@ public class RoleEquipeFactory {
         roleequipeDTO.setIdEquipe(roleequipe.getRoleEquipePK().getIdEquipe());
 
         roleequipeDTO.setRoleEquipe(roleequipe.getRoleEquipePK().getRoleEquipe());
-       // roleequipeDTO.setEmploye(EmployeFactory.employeToEmployeDTO(roleequipe.getEmploye()));
-        //roleequipeDTO.setEquipe(EquipeFactory.equipeToEquipeDTO(roleequipe.getEquipe()));
-       // roleequipeDTO.setRole(RoleFactory.roleToRoleDTO(roleequipe.getRole()));
-       // roleequipeDTO.setIdEmploye(EmployeFactory.employeToEmployeDTO(roleequipe.getEmploye()).getIdEmploye());
-        //roleequipeDTO.setIdEmploye(EmployeFactory.employeToEmployeDTO(roleequipe.getEmploye()).getIdEmploye());
+       roleequipeDTO.setEmploye(EmployeFactory.employeToEmployeDTO(roleequipe.getEmploye()));
+        roleequipeDTO.setRole(RoleFactory.roleToRoleDTO(roleequipe.getRole()));
+        roleequipeDTO.setNomEmploye(roleequipeDTO.getEmploye().getNomEmploye());
+        roleequipeDTO.setDesignation(roleequipeDTO.getRole().getDesignation());
         return roleequipeDTO;
     }
     

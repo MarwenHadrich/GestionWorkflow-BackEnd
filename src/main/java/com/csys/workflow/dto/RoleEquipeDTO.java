@@ -8,12 +8,14 @@ public class RoleEquipeDTO {
 
     
     private int idEquipe;
-    
-//  private EmployeDTO employe;
 
-//  private EquipeDTO equipe;
-//
-//  private RoleDTO role;
+    private String nomEmploye;
+
+    private String designation;
+    
+ private EmployeDTO employe;
+
+ private RoleDTO role;
 
     public int getRoleEquipe() {
         return roleEquipe;
@@ -41,31 +43,39 @@ public class RoleEquipeDTO {
 
 
 
-//    public EmployeDTO getEmploye() {
-//        return employe;
-//    }
-//
-//    public void setEmploye(EmployeDTO employe) {
-//        this.employe = employe;
-//    }
-//
-//    public EquipeDTO getEquipe() {
-//        return equipe;
-//    }
-//
-//    public void setEquipe(EquipeDTO equipe) {
-//        this.equipe = equipe;
-//    }
-//
-//
-//
-//    public RoleDTO getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(RoleDTO role) {
-//        this.role = role;
-//    }
+    public EmployeDTO getEmploye() {
+        return employe;
+    }
 
+    public void setEmploye(EmployeDTO employe) {
+        this.employe = employe;
+    }
+
+
+
+
+    public RoleDTO getRole() {
+        return role;
+    }
+
+    public void setRole(RoleDTO role) {
+        this.role = role;
+    }
+
+    public String getNomEmploye() {
+        return nomEmploye;
+    }
+
+    public void setNomEmploye(String nomEmploye) {
+        this.nomEmploye = nomEmploye;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 }
 
