@@ -1,5 +1,9 @@
 package com.csys.workflow.dto;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
@@ -8,8 +12,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+@Setter
+@Getter
+@Data
 
 public class EmployeDTO {
+
 
 
     private Integer idEmploye;
@@ -47,13 +55,13 @@ public class EmployeDTO {
             min = 0,
             max = 255
     )
-    private String login;
+    private String username;
 
     @Size(
             min = 0,
             max = 255
     )
-    private String mdp;
+    private String password;
 
     //private List<ValidationDTO> validationList;
 
@@ -66,95 +74,6 @@ public class EmployeDTO {
 
     //private List<RoleEquipeDTO> roleEquipeList;
 
-    public Integer getIdEmploye() {
-        return idEmploye;
-    }
-
-    public void setIdEmploye(Integer idEmploye) {
-        this.idEmploye = idEmploye;
-    }
-
-    public String getNomEmploye() {
-        return nomEmploye;
-    }
-
-    public void setNomEmploye(String nomEmploye) {
-        this.nomEmploye = nomEmploye;
-    }
-
-    public String getPrenomEmploye() {
-        return prenomEmploye;
-    }
-
-    public void setPrenomEmploye(String prenomEmploye) {
-        this.prenomEmploye = prenomEmploye;
-    }
-
-    public String getEmailEmploye() {
-        return emailEmploye;
-    }
-
-    public void setEmailEmploye(String emailEmploye) {
-        this.emailEmploye = emailEmploye;
-    }
-
-    public Date getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public Integer getTel() {
-        return tel;
-    }
-
-    public void setTel(Integer tel) {
-        this.tel = tel;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    public String getTypeEmploye() {
-        return typeEmploye;
-    }
-
-    public void setTypeEmploye(String typeEmploye) {
-        this.typeEmploye = typeEmploye;
-    }
-
-
-
-    public void setIdTypeEmploye(Integer idTypeEmploye) {
-        this.idTypeEmploye = idTypeEmploye;
-    }
-
-    public Integer getIdTypeEmploye() {
-        return idTypeEmploye;
-    }
 
     /*public List<ValidationDTO> getValidationList() {
         return validationList;

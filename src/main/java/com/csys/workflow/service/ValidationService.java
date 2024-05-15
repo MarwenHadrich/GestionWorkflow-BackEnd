@@ -1,11 +1,20 @@
 package com.csys.workflow.service;
 
+import com.csys.workflow.domain.Demande;
+import com.csys.workflow.domain.Interface;
+import com.csys.workflow.domain.Ticket;
 import com.csys.workflow.domain.Validation;
+import com.csys.workflow.dto.DemandeDTO;
+import com.csys.workflow.dto.EmployeDTO;
+import com.csys.workflow.dto.TicketDTO;
 import com.csys.workflow.dto.ValidationDTO;
+import com.csys.workflow.factory.DemandeFactory;
+import com.csys.workflow.factory.TicketFactory;
 import com.csys.workflow.factory.ValidationFactory;
 import com.csys.workflow.repository.ValidationRepository;
 import com.google.common.base.Preconditions;
 import java.lang.Integer;
+import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +30,11 @@ public class ValidationService {
   private final Logger log = LoggerFactory.getLogger(ValidationService.class);
 
   private final ValidationRepository validationRepository;
+  private final DemandeService demandeService;
 
-  public ValidationService(ValidationRepository validationRepository) {
+  public ValidationService(ValidationRepository validationRepository, DemandeService demandeService) {
     this.validationRepository=validationRepository;
+      this.demandeService = demandeService;
   }
 
   /**
@@ -112,6 +123,16 @@ public class ValidationService {
   public void delete(Integer id) {
     log.debug("Request to delete Validation: {}",id);
     validationRepository.deleteById(id);
+  }
+  public List<ValidationDTO> findValidationsByDemandId(Integer idDemande) {
+    DemandeDTO demandeDTO = demandeService.findById(idDemande);
+    if (demandeDTO!=null) {
+      List<Validation> validations = validationRepository.findByDemande_IdDemande(demandeDTO.getIdDemande());
+      return ValidationFactory.validationToValidationDTOs(validations);
+    } else {
+      List<Validation> validations = validationRepository.findAll();
+      return ValidationFactory.validationToValidationDTOs(validations);
+    }
   }
 }
 

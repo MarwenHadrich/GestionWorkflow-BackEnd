@@ -51,11 +51,7 @@ public class EmployeResource {
   @PostMapping("/employes")
   public ResponseEntity<EmployeDTO> createEmploye(@Valid @RequestBody EmployeDTO employeDTO, BindingResult bindingResult) throws URISyntaxException, MethodArgumentNotValidException {
     log.debug("REST request to save Employe : {}", employeDTO);
-    // Check if an employee with the same ID already exists
-//    if (employeService.existsById(employeDTO.getIdEmploye())) {
-//      bindingResult.addError(new FieldError("EmployeDTO", "idEmploye", "Employee with this ID already exists."));
-//      throw new MethodArgumentNotValidException(null, bindingResult);
-//    }
+
     // Check if the idTypeEmploye associated with the employe exists
     if (employeDTO.getTypeEmploye() != null && !typeEmployeService.existsById(employeDTO.getIdTypeEmploye())) {
       bindingResult.addError(new FieldError("EmployeDTO", "typeEmploye.idTypeEmploye", "TypeEmploye with this ID does not exist."));

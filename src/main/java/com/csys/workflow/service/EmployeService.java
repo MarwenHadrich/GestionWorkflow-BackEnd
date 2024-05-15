@@ -116,15 +116,15 @@ public class EmployeService {
     employeRepository.deleteById(id);
   }
   @Transactional(readOnly = true)
-  public EmployeDTO findByLogin(String login) {
-    log.debug("Request to get Employe by login: {}", login);
-    Optional<Employe> employeOptional = employeRepository.findByLogin(login);
+  public EmployeDTO findByLogin(String username) {
+    log.debug("Request to get Employe by login: {}", username);
+    Optional<Employe> employeOptional = employeRepository.findByUsername(username);
     return employeOptional.map(EmployeFactory::employeToEmployeDTO).orElse(null);
   }
   @Transactional(readOnly = true)
-  public boolean existsByLogin(String login) {
-    log.debug("Request to check if Employe exists by login: {}", login);
-    Optional<Employe> employe = employeRepository.findByLogin(login);
+  public boolean existsByLogin(String username) {
+    log.debug("Request to check if Employe exists by login: {}", username);
+    Optional<Employe> employe = employeRepository.findByUsername(username);
     return employe.isPresent();
   }
   @Transactional(readOnly = true)

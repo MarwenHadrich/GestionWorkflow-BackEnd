@@ -48,6 +48,7 @@ public class CorsConfig {
         config.setAllowCredentials(true); // You usually want this
         // Explicitly specify allowed origins instead of using wildcard *
         config.addAllowedOrigin("http://localhost:8080");
+        config.addAllowedOrigin("http://localhost:8081");
         // Add other allowed origins if needed
         config.addAllowedOrigin("http://localhost:3001/");
         config.addAllowedOrigin("http://localhost:3000/");

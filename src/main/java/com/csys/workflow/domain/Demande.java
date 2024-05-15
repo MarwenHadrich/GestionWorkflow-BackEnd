@@ -37,7 +37,7 @@ public class Demande implements Serializable {
     private Date dateCreationDemande;
     @OneToMany(mappedBy = "demande", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TicketData> ticketDataList;
-    @OneToMany(mappedBy = "demande")
+    @OneToMany(mappedBy = "demande", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Validation> validationList;
     @JoinColumn(name = "id_employe", referencedColumnName = "id_employe")
     @ManyToOne

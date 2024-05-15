@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeRepository extends JpaRepository<Employe, Integer> {
 //    Employe findByLogin(String login);
-    Optional<Employe> findByLogin(String login);
+    Optional<Employe> findByUsername(String username);
     Employe findByEmailEmploye(String email);
     Employe findByTel(Integer tel);
 }

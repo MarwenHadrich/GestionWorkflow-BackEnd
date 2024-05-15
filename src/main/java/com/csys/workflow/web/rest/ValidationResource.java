@@ -1,5 +1,6 @@
 package com.csys.workflow.web.rest;
 
+import com.csys.workflow.dto.DemandeDTO;
 import com.csys.workflow.dto.ValidationDTO;
 import com.csys.workflow.service.DemandeService;
 import com.csys.workflow.service.ValidationService;
@@ -60,11 +61,7 @@ public class ValidationResource {
   @PostMapping("/validations")
   public ResponseEntity<ValidationDTO> createValidation(@Valid @RequestBody ValidationDTO validationDTO, BindingResult bindingResult) throws URISyntaxException, MethodArgumentNotValidException {
     log.debug("REST request to save Validation : {}", validationDTO);
-//    // Check if idValidation exists
-//    if (validationService.existsById(validationDTO.getIdValidation())) {
-//      bindingResult.addError(new FieldError("ValidationDTO", "idValidation", "Validation with this ID does not exist."));
-//      throw new MethodArgumentNotValidException(null, bindingResult);
-//    }
+
 
 
     // Check if idDemande exists
@@ -74,16 +71,16 @@ public class ValidationResource {
     }
 
     // Check if idEtape exists
-    if (validationDTO.getIdEtape() != null && !etapeService.existsById(validationDTO.getIdEtape())) {
-      bindingResult.addError(new FieldError("ValidationDTO", "idEtape", "Etape with this ID does not exist."));
-      throw new MethodArgumentNotValidException(null, bindingResult);
-    }
+//    if (!etapeService.existsById(validationDTO.getIdEtape())) {
+//      bindingResult.addError(new FieldError("ValidationDTO", "idEtape", "Etape with this ID does not exist."));
+//      throw new MethodArgumentNotValidException(null, bindingResult);
+//    }
 
     // Check if idEmploye exists
-    if (validationDTO.getIdEmploye() != null && !employeService.existsById(validationDTO.getIdEmploye())) {
-      bindingResult.addError(new FieldError("ValidationDTO", "idEmploye", "Employe with this ID does not exist."));
-      throw new MethodArgumentNotValidException(null, bindingResult);
-    }
+//    if ( !employeService.existsById(validationDTO.getIdEmploye())) {
+//      bindingResult.addError(new FieldError("ValidationDTO", "idEmploye", "Employe with this ID does not exist."));
+//      throw new MethodArgumentNotValidException(null, bindingResult);
+//    }
     if ( validationDTO.getIdValidation() != null) {
       bindingResult.addError( new FieldError("ValidationDTO","idValidation","POST method does not accepte "+ENTITY_NAME+" with code"));
       throw new MethodArgumentNotValidException(null, bindingResult);
@@ -110,22 +107,22 @@ public class ValidationResource {
     log.debug("Request to update Validation: {}",id);
 
     // Check if idDemande exists
-    if (validationDTO.getIdDemande() != null && !demandeService.existsById(validationDTO.getIdDemande())) {
-      bindingResult.addError(new FieldError("ValidationDTO", "idDemande", "Demande with this ID does not exist."));
-      throw new MethodArgumentNotValidException(null, bindingResult);
-    }
-
-    // Check if idEtape exists
-    if (validationDTO.getIdEtape() != null && !etapeService.existsById(validationDTO.getIdEtape())) {
-      bindingResult.addError(new FieldError("ValidationDTO", "idEtape", "Etape with this ID does not exist."));
-      throw new MethodArgumentNotValidException(null, bindingResult);
-    }
-
-    // Check if idEmploye exists
-    if (validationDTO.getIdEmploye() != null && !employeService.existsById(validationDTO.getIdEmploye())) {
-      bindingResult.addError(new FieldError("ValidationDTO", "idEmploye", "Employe with this ID does not exist."));
-      throw new MethodArgumentNotValidException(null, bindingResult);
-    }
+//    if (validationDTO.getIdDemande() != null && !demandeService.existsById(validationDTO.getIdDemande())) {
+//      bindingResult.addError(new FieldError("ValidationDTO", "idDemande", "Demande with this ID does not exist."));
+//      throw new MethodArgumentNotValidException(null, bindingResult);
+//    }
+//
+//    // Check if idEtape exists
+//    if (validationDTO.getIdEtape() != null && !etapeService.existsById(validationDTO.getIdEtape())) {
+//      bindingResult.addError(new FieldError("ValidationDTO", "idEtape", "Etape with this ID does not exist."));
+//      throw new MethodArgumentNotValidException(null, bindingResult);
+//    }
+//
+//    // Check if idEmploye exists
+//    if (validationDTO.getIdEmploye() != null && !employeService.existsById(validationDTO.getIdEmploye())) {
+//      bindingResult.addError(new FieldError("ValidationDTO", "idEmploye", "Employe with this ID does not exist."));
+//      throw new MethodArgumentNotValidException(null, bindingResult);
+//    }
     validationDTO.setIdValidation(id);
     ValidationDTO result =validationService.update(validationDTO);
     return ResponseEntity.ok().body(result);
@@ -167,6 +164,11 @@ public class ValidationResource {
     log.debug("Request to delete Validation: {}",id);
     validationService.delete(id);
     return ResponseEntity.ok().build();
+  }
+  @GetMapping("/validations/demande/{idDemande}")
+  public ResponseEntity<List<ValidationDTO>> findDemandsByEmployeId(@PathVariable Integer idDemande) {
+    List<ValidationDTO> validations = validationService.findValidationsByDemandId(idDemande);
+    return ResponseEntity.ok().body(validations);
   }
 }
 

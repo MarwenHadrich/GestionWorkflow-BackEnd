@@ -19,8 +19,8 @@ public class EmployeFactory {
     employeDTO.setDateNaissance(employe.getDateNaissance());
     employeDTO.setAdresse(employe.getAdresse());
     employeDTO.setTel(employe.getTel());
-    employeDTO.setLogin(employe.getLogin());
-    employeDTO.setMdp(employe.getMdp());
+    employeDTO.setUsername(employe.getUsername());
+    employeDTO.setPassword(employe.getPassword());
     //employeDTO.setValidationList(ValidationFactory.validationToValidationDTOs(employe.getValidationList()));
     //employeDTO.setDemandeList(DemandeFactory.demandeToDemandeDTOs(employe.getDemandeList()));
     // employeDTO.setTypeEmploye(TypeEmployeFactory.typeemployeToTypeEmployeDTO(employe.getTypeEmploye()));
@@ -46,8 +46,8 @@ public class EmployeFactory {
     employe.setDateNaissance(employeDTO.getDateNaissance());
     employe.setAdresse(employeDTO.getAdresse());
     employe.setTel(employeDTO.getTel());
-    employe.setLogin(employeDTO.getLogin());
-    employe.setMdp(employeDTO.getMdp());
+    employe.setUsername(employeDTO.getUsername());
+    employe.setPassword(employeDTO.getPassword());
 
     if (employeDTO.getIdTypeEmploye() != null) {
       TypeEmploye typeEmploye = new TypeEmploye();
